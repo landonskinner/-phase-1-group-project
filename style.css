@@ -90,7 +90,8 @@
     }
     
     /* --------------styles for players-------------- */
-    #player-container {
+    #player-container,
+    #favorite-container {
     position: absolute;
     display: none;
     justify-content: center;

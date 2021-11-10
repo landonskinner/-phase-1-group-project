@@ -18,7 +18,7 @@ defense.style.display = "none"
 goalie.style.display = "none"
 
 const getTeams = () => {
-    return fetch('http://localhost:3000/teams').then(resp => resp.json())
+    return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json/teams').then(resp => resp.json())
 }
 
 //set up button functionality
@@ -316,8 +316,12 @@ const displayPlayers = (teamId,teamImgObj,teamColorObj) => {
         defense.style.display = 'inline-block'
         goalie.style.display = 'inline-block'
     
-        cardInner.addEventListener("dblclick", function () {
+        cardInner.addEventListener("click", function () {
             cardInner.classList.toggle('is-flipped')
+        })
+
+        likeBttn.addEventListener("click", function(e) {
+            e.stopPropagation()
         })
     })
     })
@@ -330,7 +334,7 @@ const displayPlayers = (teamId,teamImgObj,teamColorObj) => {
 
 //Returns promise of object of selected team
 const getTeam = (teamId) => {
-    return fetch('http://localhost:3000/teams')
+    return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json/teams')
         .then(resp => resp.json())
         .then(teams => teams.find((el) => el.id === teamId))
     }
@@ -479,7 +483,7 @@ const addFavorite = (playerId,cardFront,/*cardBack*/) => {
         "card" : cardFront,
         //"cardBack" : cardBack
     }
-    fetch('http://localhost:3000/favorites', {
+    fetch('https://landonskinner.github.io/-phase-1-group-project/db.json/favorites', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -507,7 +511,7 @@ function buildFavorites(){
         deleteBttn.addEventListener('click', (e) => {
             let deleteId = cardElement.id
             e.target.parentNode.parentNode.parentNode.remove();
-            fetch(`http://localhost:3000/favorites/${deleteId}`, {
+            fetch(`https://landonskinner.github.io/-phase-1-group-project/db.json/favorites/${deleteId}`, {
                 method: 'DELETE',
                     headers: {
                         'Content-type': 'application/json'
@@ -524,7 +528,7 @@ function buildFavorites(){
 }
 
 const getFavorites = () => {
-    return fetch('http://localhost:3000/favorites')
+    return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json/favorites')
     .then(resp => resp.json())
 }
     init()
