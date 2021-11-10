@@ -18,7 +18,7 @@ defense.style.display = "none"
 goalie.style.display = "none"
 
 const getTeams = () => {
-    return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json/teams').then(resp => resp.json())
+    return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json').then(resp => resp.json())
 }
 
 //set up button functionality
@@ -334,7 +334,7 @@ const displayPlayers = (teamId,teamImgObj,teamColorObj) => {
 
 //Returns promise of object of selected team
 const getTeam = (teamId) => {
-    return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json/teams')
+    return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json')
         .then(resp => resp.json())
         .then(teams => teams.find((el) => el.id === teamId))
     }
@@ -483,7 +483,7 @@ const addFavorite = (playerId,cardFront,/*cardBack*/) => {
         "card" : cardFront,
         //"cardBack" : cardBack
     }
-    fetch('https://landonskinner.github.io/-phase-1-group-project/db.json/favorites', {
+    fetch('https://landonskinner.github.io/-phase-1-group-project/favorites.json', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -511,7 +511,7 @@ function buildFavorites(){
         deleteBttn.addEventListener('click', (e) => {
             let deleteId = cardElement.id
             e.target.parentNode.parentNode.parentNode.remove();
-            fetch(`https://landonskinner.github.io/-phase-1-group-project/db.json/favorites/${deleteId}`, {
+            fetch(`https://landonskinner.github.io/-phase-1-group-project/favorites.json/${deleteId}`, {
                 method: 'DELETE',
                     headers: {
                         'Content-type': 'application/json'
@@ -528,7 +528,7 @@ function buildFavorites(){
 }
 
 const getFavorites = () => {
-    return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json/favorites')
+    return fetch('https://landonskinner.github.io/-phase-1-group-project/favorites.json')
     .then(resp => resp.json())
 }
     init()
