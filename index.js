@@ -1,7 +1,7 @@
 // window.addEventListener('DOMContentLoaded', () => init())
 
 const init = () => {
-    getTeams().then(teams => teams.forEach(el => makeTeamTiles(el)))
+    getTeams().then(teams => teams.teams.forEach(el => makeTeamTiles(el)))
     teamSelectBttnEvent()
     offenseButton()
     defenseButton()
@@ -336,7 +336,7 @@ const displayPlayers = (teamId,teamImgObj,teamColorObj) => {
 const getTeam = (teamId) => {
     return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json')
         .then(resp => resp.json())
-        .then(teams => teams.find((el) => el.id === teamId))
+        .then(teams => teams.teams.find((el) => el.id === teamId))
     }
 
 //Returns promise of object with list of player image paths 
@@ -345,7 +345,7 @@ const getTeam = (teamId) => {
 const playerImages = () => {
     return getTeams().then(response => {
         const playerImgs = {}
-        response.forEach(team => {
+        response.teams.forEach(team => {
             const players = team.players || []
             players.forEach(player => {
                 const playerName = player.espn_player_name
@@ -486,7 +486,8 @@ const addFavorite = (playerId,cardFront,/*cardBack*/) => {
     fetch('https://landonskinner.github.io/-phase-1-group-project/favorites.json', {
         method: 'POST',
         headers: {
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
+            'Access-Control-Allow-Origin': '*' 
         },
         body: JSON.stringify(favoritePlayer)
     })  
