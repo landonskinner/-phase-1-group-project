@@ -1,3 +1,0 @@
-[submodule "mock-server"]
-	path = mock-server
-	url = https://github.com/landonskinner/mock-server-nhl-app.git
