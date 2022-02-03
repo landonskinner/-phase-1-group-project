@@ -1,7 +1,7 @@
 // window.addEventListener('DOMContentLoaded', () => init())
 
 const init = () => {
-    getTeams().then(teams => teams.teams.forEach(el => makeTeamTiles(el)))
+    getTeams().then(teams => teams.forEach(el => makeTeamTiles(el)))
     teamSelectBttnEvent()
     offenseButton()
     defenseButton()
@@ -18,7 +18,7 @@ defense.style.display = "none"
 goalie.style.display = "none"
 
 const getTeams = () => {
-    return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json').then(resp => resp.json())
+    return fetch('https://mock-server-nhl-app.herokuapp.com/teams').then(resp => resp.json())
 }
 
 //set up button functionality
@@ -334,18 +334,18 @@ const displayPlayers = (teamId,teamImgObj,teamColorObj) => {
 
 //Returns promise of object of selected team
 const getTeam = (teamId) => {
-    return fetch('https://landonskinner.github.io/-phase-1-group-project/db.json')
+    return fetch('https://mock-server-nhl-app.herokuapp.com/teams')
         .then(resp => resp.json())
-        .then(teams => teams.teams.find((el) => el.id === teamId))
+        .then(teams => teams.find((el) => el.id === teamId))
     }
 
 //Returns promise of object with list of player image paths 
 
 
 const playerImages = () => {
-    return getTeams().then(response => {
+    return getTeams().then(teams => {
         const playerImgs = {}
-        response.teams.forEach(team => {
+        teams.forEach(team => {
             const players = team.players || []
             players.forEach(player => {
                 const playerName = player.espn_player_name
@@ -483,7 +483,7 @@ const addFavorite = (playerId,cardFront,/*cardBack*/) => {
         "card" : cardFront,
         //"cardBack" : cardBack
     }
-    fetch('https://landonskinner.github.io/-phase-1-group-project/favorites.json', {
+    fetch('https://mock-server-nhl-app.herokuapp.com/favorites', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
@@ -512,7 +512,7 @@ function buildFavorites(){
         deleteBttn.addEventListener('click', (e) => {
             let deleteId = cardElement.id
             e.target.parentNode.parentNode.parentNode.remove();
-            fetch(`https://landonskinner.github.io/-phase-1-group-project/favorites.json/${deleteId}`, {
+            fetch(`https://mock-server-nhl-app.herokuapp.com/favorites/${deleteId}`, {
                 method: 'DELETE',
                     headers: {
                         'Content-type': 'application/json'
@@ -529,7 +529,7 @@ function buildFavorites(){
 }
 
 const getFavorites = () => {
-    return fetch('https://landonskinner.github.io/-phase-1-group-project/favorites.json')
+    return fetch('https://mock-server-nhl-app.herokuapp.com/favorites')
     .then(resp => resp.json())
 }
     init()
