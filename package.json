@@ -1,0 +1,19 @@
+{
+  "name": "-phase-1-group-project",
+  "version": "1.0.0",
+  "description": "json-server --watch db.json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/landonskinner/-phase-1-group-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/landonskinner/-phase-1-group-project/issues"
+  },
+  "homepage": "https://github.com/landonskinner/-phase-1-group-project#readme"
+}
